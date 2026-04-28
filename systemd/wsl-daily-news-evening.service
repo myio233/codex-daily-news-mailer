@@ -1,0 +1,22 @@
+[Unit]
+Description=Fetch evening AI and war news with Codex and email it
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=__RUN_USER__
+WorkingDirectory=__WORKDIR__
+Environment=HOME=__RUN_HOME__
+Environment=TZ=Asia/Shanghai
+Environment=PYTHONUNBUFFERED=1
+EnvironmentFile=__ENV_FILE__
+ExecStartPre=/usr/bin/mkdir -p __WORKDIR__/logs __WORKDIR__/output
+ExecStart=/usr/bin/python3 __WORKDIR__/run_daily_news.py --env-file __ENV_FILE__ --variant evening
+StandardOutput=append:__WORKDIR__/logs/service.log
+StandardError=append:__WORKDIR__/logs/service.log
+Nice=10
+IOSchedulingClass=best-effort
+
+[Install]
+WantedBy=multi-user.target

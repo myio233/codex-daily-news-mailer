@@ -1,0 +1,11 @@
+[Unit]
+Description=Run morning daily news email at 08:00 Asia/Shanghai
+
+[Timer]
+OnCalendar=*-*-* 08:00:00 Asia/Shanghai
+Persistent=true
+AccuracySec=1min
+Unit=wsl-daily-news-morning.service
+
+[Install]
+WantedBy=timers.target

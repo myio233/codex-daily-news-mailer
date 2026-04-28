@@ -1,0 +1,11 @@
+logs/
+output/
+state/
+*.pyc
+__pycache__/
+.venv/
+.omx/
+.serena/
+.codex/
+.env
+news_mail.env
